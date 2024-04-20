@@ -1,0 +1,39 @@
+.section-gauche {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-droite {
+    flex: 1;
+    background: linear-gradient(214deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: #ffffff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    clip-path: circle(78% at 79% 41%);
+}
+
+.btn-bleu {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);    
+    color: #fff;
+}
+.bouton-login, .bouton-login a {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 85px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    background: linear-gradient(#d53369 0%, #daae51 100%);
+}

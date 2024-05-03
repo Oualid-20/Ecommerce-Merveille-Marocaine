@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+                :root {
+                    --poppins: 'Poppins', sans-serif;
+
+                    --light: #F9F9F9;
+                    --blue: #3C91E6;
+                    --light-blue: #CFE8FF;
+                    --dark: #342E37;
+                    --yellow: #FFCE26;
+                    --light-yellow: #FFF2C6;
+                    --orange: #FD7238;
+                    --light-orange: #FFE0D3;
+                    --violet: #3b1188;
+                    --light-violet: #a290c3;
+
+                }
+
+                /* CONTENT */
+                        #contenue {
+                            position: relative;
+                            width: calc(100% - 280px);
+                            left: 280px;
+                            transition: .3s ease;
+                        }
+
+
+                        #contenue main .box-info {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                            grid-gap: 24px;
+                            margin-top: 36px;
+                        }
+                        #contenue main .box-info li {
+                            padding: 24px;
+                            background: var(--light);
+                            border-radius: 20px;
+                            display: flex;
+                            align-items: center;
+                            grid-gap: 24px;
+                        }
+                        #contenue main .box-info li .bx {
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 10px;
+                            font-size: 36px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        #contenue main .box-info li:nth-child(1) .bx {
+                            background: var(--light-blue);
+                            color: var(--blue);
+                        }
+                        #contenue main .box-info li:nth-child(2) .bx {
+                            background: var(--light-yellow);
+                            color: var(--yellow);
+                        }
+                        #contenue main .box-info li:nth-child(3) .bx {
+                            background: var(--light-orange);
+                            color: var(--orange);
+                        }
+                        #contenue main .box-info li:nth-child(4) .bx {
+                            background: var(--light-violet);
+                            color: var(--violet);
+                        }
+                        #contenue main .box-info li .text h3 {
+                            font-size: 24px;
+                            font-weight: 600;
+                            color: var(--dark);
+                        }
+                        #contenue main .box-info li .text p {
+                            color: var(--dark);	
+                    }
+
+
+
+                    @media screen and (max-height: 450px) {
+                        .sidebar {padding-top: 15px;}
+                        .sidebar a {font-size: 18px;}
+                        }

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -6,14 +11,19 @@
     font-size: 18px;
 }
 
-.user-cart span{
-    background-color:red; 
-    padding-right:3px; 
-    padding-left:3px;  
-    border-radius:10px; 
-    font-size:18px;
-    margin-left:-1.2rem;
+:root {
+	--poppins: 'Poppins', sans-serif;
+
+	--light: #F9F9F9;
+	--blue: #3C91E6;
+	--light-blue: #CFE8FF;
+	--dark: #342E37;
+	--yellow: #FFCE26;
+	--light-yellow: #FFF2C6;
+	--orange: #FD7238;
+	--light-orange: #FFE0D3;
 }
+
 
 /*********** admin dashboard styling **********/
   .card{
@@ -21,8 +31,7 @@
       padding:20px;
       margin: 10px;
       border-radius: 10px;
-      box-shadow: 8px 5px 5px #3B3131;
-  }
+      box-shadow: 8px 5px 5px #3B3131;  }   
 
 /************************** for sidebar ***********************************/
 
@@ -89,68 +98,16 @@
     
     /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
     #main {
-      transition: margin-left .5s; /* If you want a transition effect */
+      transition: margin-left .4s; /* If you want a transition effect */
       padding: 20px;
     }
     
     /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
-      .sidebar {padding-top: 15px;}
-      .sidebar a {font-size: 18px;}
+    
+    .btn.btn-signin:hover,
+    .btn.btn-signin:active,
+    .btn.btn-signin:focus {
+      background-color: #1a6175;
     }
 
-
-/*
-* Form styles
-*/
-
-
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-  background-color: #1a6175;
-}
-
-
-.box {
-  position: relative;
-  background-color: #000;
-}
-
-.image {
-  opacity: 1;
-  display: block;
-  max-width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-  object-fit: contain;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.box:hover .image {
-  opacity: 0.3;
-}
-
-.box:hover .middle {
-  opacity: 1;
-}
-
-.text {
-  background-color: #584e46;
-  color: #fff;
-  font-size: 16px;
-  padding: 6px;
-  border-radius: 5px;
-}
-
+       

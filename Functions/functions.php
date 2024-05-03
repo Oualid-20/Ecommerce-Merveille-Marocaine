@@ -118,11 +118,6 @@ if(!isset($_POST['btn-connecte']) ){
 
 
 
-     function AddAdmin($data){
-
-
-        return true;
-    }
 
 
 

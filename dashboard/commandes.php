@@ -5,7 +5,6 @@
    // include_once"../Functions/verificationRole.php";
 ?>
 
-<body>
     <?php include"../includes/navDashboard.php" ?>
 <!-- Sidebar -->
     <?php include"../includes/sidebar.php" ?>

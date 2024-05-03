@@ -4,6 +4,8 @@
     include"../includes/head.php" ;
     include_once"../Functions/sessionConnect.php";
 ?>
+    <link rel="stylesheet" href="/merveille_marocaine/assets/css/connexion.css">
+    <link rel="stylesheet" href="/merveille_marocaine/assets/css/s'inscrire.css">
 
 <body>
     <div class="ecran-divise">

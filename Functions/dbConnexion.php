@@ -11,6 +11,6 @@ if (!$conn) {
              Connection failed:
        </div> " . mysqli_connect_error());
 }
-echo "<div class='alert alert-success' role='alert'>
-        Connected successfully </div>";
+/*echo "<div class='alert alert-success' role='alert'>
+        Connected successfully </div>";*/
 ?>

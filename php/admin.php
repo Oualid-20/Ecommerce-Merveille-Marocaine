@@ -3,6 +3,8 @@
     $pageTitle = "Admin Login";
     include"../includes/head.php" ;
 ?>
+    <link rel="stylesheet" href="/merveille_marocaine/assets/css/connexion.css">
+    <link rel="stylesheet" href="/merveille_marocaine/assets/css/s'inscrire.css">
 
 <body>
    <style>

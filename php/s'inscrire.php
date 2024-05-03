@@ -4,20 +4,23 @@
     include"../includes/head.php" ;
     include_once"../Functions/sessionConnect.php";
 ?>
+    <link rel="stylesheet" href="/merveille_marocaine/assets/css/s'inscrire.css">
+    <link rel="stylesheet" href="/merveille_marocaine/assets/css/connexion.css">
+
 <body>
     <style>
-     @media screen and (max-width: 768px) {
-        .ecran-divise {
-            flex-direction: column; 
-            height: auto; }
-        .cote-gauche, .cote-droit {
-            flex: 1;
-            padding: 20px; }
-        .cote-gauche {
-            clip-path: circle(101.1% at 73% -25%);  } }
-    @media screen and (max-width: 480px) {
-        .cote-gauche {
-            clip-path: circle(153.1% at 14% 12%) } } 
+        @media screen and (max-width: 768px) {
+            .ecran-divise {
+                flex-direction: column; 
+                height: auto; }
+            .cote-gauche, .cote-droit {
+                flex: 1;
+                padding: 20px; }
+            .cote-gauche {
+                clip-path: circle(101.1% at 73% -25%);  } }
+        @media screen and (max-width: 480px) {
+            .cote-gauche {
+                clip-path: circle(153.1% at 14% 12%) } } 
     </style>
     <div class="ecran-divise">
         <div class="section-gauche">

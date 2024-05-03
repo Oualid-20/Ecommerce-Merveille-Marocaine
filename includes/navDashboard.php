@@ -1,3 +1,4 @@
+<body>
 <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background-color:hsla(220, 83%, 39%, 0.963);">
     
     <a class="navbar-brand ml-5" href="./index.php">

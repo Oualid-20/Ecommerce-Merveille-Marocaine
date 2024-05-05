@@ -15,17 +15,20 @@
     return $categories;
 }
 
-function afficherClient() {
-
+function afficherClient($page = 1, $perPage = 10) {
     global $conn;
 
-    $requetteSelect= "SELECT *  FROM UTILISATEURS WHERE ROLE = 'client'";
+    // Calculer l'offset
+    $offset = ($page - 1) * $perPage;
+
+    $requetteSelect = "SELECT * FROM UTILISATEURS WHERE ROLE = 'client' LIMIT $perPage OFFSET $offset";
 
     $result = $conn->query($requetteSelect);
-    
-    $clients = $result->fetch_all(MYSQLI_ASSOC); 
+
+    $clients = $result->fetch_all(MYSQLI_ASSOC);
     return $clients;
 }
+
 
 
 function afficherCoop() {

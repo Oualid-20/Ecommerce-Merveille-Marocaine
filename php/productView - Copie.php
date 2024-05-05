@@ -78,8 +78,7 @@
                 </style>
 </head>
 <body>
-    <?php
-    include "../includes/navBar.php" ; ?>
+    <?php include "../includes/navBar.php" ; ?>
 
 
     <div class="container">

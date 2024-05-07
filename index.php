@@ -17,8 +17,6 @@
         <?php include "includes/NavTemplate.php";?>
 
         <!-- header end -->
-
-
         <main>
 
         <!-- breadcrumb-area-start -->
@@ -128,7 +126,7 @@
                                         <div class="col-xl-3 col-lg-3 col-md-5">
                                             <div class="shop-widget">
                                                 <div class="shop-sidebar-banner">
-                                                    <a href="shop.html"><img src="/img/banner/shop-banner.jpg" alt=""></a>
+                                                    <a href="shop.html"><img src="assets//img/banner/shop-banner.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +142,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="/img/product/pro13.jpg" alt="">
+                                                    <img src="assets//img/product/pro13.jpg" alt="">
                                                     <img class="secondary-img" src="/img/product/pro14.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -187,7 +185,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="/img/product/pro15.jpg" alt="">
+                                                    <img src="assets//img/product/pro15.jpg" alt="">
                                                     <img class="secondary-img" src="/img/product/pro16.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -230,7 +228,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="/img/product/pro1.jpg" alt="">
+                                                    <img src="assets//img/product/pro1.jpg" alt="">
                                                     <img class="secondary-img" src="/img/product/pro2.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -273,7 +271,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img/product/pro29.jpg" alt="">
+                                                    <img src="assets/assets/img/product/pro29.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img/roduct/pro28.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -316,7 +314,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img/product/pro3.jpg" alt="">
+                                                    <img src="assets/assets/img/product/pro3.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img/product/pro4.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -359,7 +357,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img/product/pro6.jpg" alt="">
+                                                    <img src="assets/assets/img/product/pro6.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img/product/pro7.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -402,7 +400,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img/ alt="">
+                                                    <img src="assets/assets/img/ alt="">
                                                     <img class="secondary-img" src="assets/img/product/pro23.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -445,7 +443,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img//product/pro33.jpg" alt="">
+                                                    <img src="assets/assets/img//product/pro33.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img//product/pro32.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -488,7 +486,7 @@
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img//product/pro9.jpg" alt="">
+                                                    <img src="assets/assets/img//product/pro9.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img//product/pro10.jpg" alt="">
                                                 </a>
                                                 <div class="product-action text-center">
@@ -535,7 +533,7 @@
                                         <div class="product-wrapper mb-30">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img//product/pro13.jpg" alt="">
+                                                    <img src="assets/assets/img//product/pro13.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img//product/pro14.jpg" alt="">
                                                 </a>
                                                 <div class="sale-tag">
@@ -581,7 +579,7 @@
                                         <div class="product-wrapper mb-30">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img//product/pro11.jpg" alt="">
+                                                    <img src="assets/assets/img//product/pro11.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img//product/pro12.jpg" alt="">
                                                 </a>
                                                 <div class="sale-tag">
@@ -627,7 +625,7 @@
                                         <div class="product-wrapper mb-30">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img//product/pro15.jpg" alt="">
+                                                    <img src="assets/assets/img//product/pro15.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img//product/pro16.jpg" alt="">
                                                 </a>
                                                 <div class="sale-tag">
@@ -673,7 +671,7 @@
                                         <div class="product-wrapper mb-30">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img src="assets/img//product/pro6.jpg" alt="">
+                                                    <img src="assets/assets/img//product/pro6.jpg" alt="">
                                                     <img class="secondary-img" src="assets/img//product/pro7.jpg" alt="">
                                                 </a>
                                                 <div class="sale-tag">
@@ -719,7 +717,7 @@
                                         <div class="product-wrapper mb-30">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img src="/img/product/pro18.jpg" alt="">
+                                                    <img src="assets//img/product/pro18.jpg" alt="">
                                                     <img class="secondary-img" src="/img/product/pro19.jpg" alt="">
                                                 </a>
                                                 <div class="sale-tag">

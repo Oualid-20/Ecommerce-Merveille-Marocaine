@@ -31,7 +31,7 @@
       padding:20px;
       margin: 10px;
       border-radius: 10px;
-      box-shadow: 8px 5px 5px #3B3131;  }   
+      box-shadow: 8px 5px 5px #2a11a8;  }   
 
 /************************** for sidebar ***********************************/
 
@@ -88,12 +88,12 @@
       padding: 10px 15px;
       border: none;
       color: #fff;
-      background-color:#584e46;
+      background-color:#1954ca;
       border-radius: 15px;
     }
     
     .openbtn:hover {
-      color: #ECDAC9;
+      color: #322c89;
     }
     
     /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -110,4 +110,4 @@
       background-color: #1a6175;
     }
 
-       
+  

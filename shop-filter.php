@@ -41,8 +41,8 @@
                         <div class="breadcrumb-text text-center">
                             <h1>Our Shop</h1>
                             <ul class="breadcrumb-menu">
-                                <li><a href="index.html">home</a></li>
-                                <li><span>shop</span></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li><span>Shop</span></li>
                             </ul>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="row">
                             <div class="col-xl-5 col-lg-5 col-md-6">
                                 <div class="product-showing mb-40">
-                                    <p>Showing 1–22 of 32 results</p>
+                                  <!--  <p>Showing 1–22 of 32 results</p> -->
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-6">
@@ -77,7 +77,6 @@
                                     </ul>
                                 </div>
                                 <div class="pro-filter-btn mb-40 f-right">
-                                    <button id="filter-btn">Filter +</button>
                                 </div>
                             </div>
                         </div>
@@ -298,21 +297,21 @@
         </div> <!-- end fullscreen search -->
 
 		<!-- JS here -->
-        <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="assets/js/jquery-ui.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/isotope.pkgd.min.js"></script>
-        <script src="assets/js/slick.min.js"></script>
-        <script src="assets/js/jquery.meanmenu.min.js"></script>
-        <script src="assets/js/ajax-form.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/jquery.scrollUp.min.js"></script>
-        <script src="assets/js/jquery.final-countdown.min.js"></script>
-        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+            <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+            <script src="assets/js/jquery-ui.js"></script>
+            <script src="assets/js/popper.min.js"></script>
+            <script src="assets/js/bootstrap.min.js"></script>
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <script src="assets/js/isotope.pkgd.min.js"></script>
+            <script src="assets/js/slick.min.js"></script>
+            <script src="assets/js/jquery.meanmenu.min.js"></script>
+            <script src="assets/js/ajax-form.js"></script>
+            <script src="assets/js/wow.min.js"></script>
+            <script src="assets/js/jquery.scrollUp.min.js"></script>
+            <script src="assets/js/jquery.final-countdown.min.js"></script>
+            <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+            <script src="assets/js/jquery.magnific-popup.min.js"></script>
+            <script src="assets/js/plugins.js"></script>
+            <script src="assets/js/main.js"></script>
     </body>
 </html>

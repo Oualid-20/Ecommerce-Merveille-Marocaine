@@ -47,7 +47,7 @@
                             <td> 
                                 <div class='btn-group btn-group'>
                                     <a name="modifier_pdt"  type='button' class='btn btn-warning mr-2' data-bs-toggle="modal" data-bs-target="#Modal_modifier<?=$pdt['ID_PDT']; ?>">Modifier</a>
-                                    <a name="supprim_pdt"  href='crud/supprimer.php?type=produits&Id=<?=$pdt['ID_PDT']?>' type='button' class='btn btn-danger'>Supprimer</a>
+                                    <a name="supprim_pdt"  id="supprimer" data-id='<?=$pdt['ID_PDT']?>' type='button' class='btn btn-danger'>Supprimer</a>
                                 </div> 
                             </td>
                         </tr>
@@ -202,5 +202,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
     <script type="text/javascript" src="/merveille_marocaine//assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.all.min.js" integrity="sha512-ziDG00v9lDjgmzxhvyX5iztPHpSryN/Ct/TAMPmMmS2O3T1hFPRdrzVCSvwnbPbFNie7Yg5mF7NUSSp5smu7RA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+       const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+            
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+                });
+                document.querySelectorAll(".btn-danger").forEach((button) => {
+                button.addEventListener("click", function(event) {
+                event.preventDefault(); 
+            
+                const coopId = this.getAttribute("data-id"); 
+            
+                swalWithBootstrapButtons
+            .fire({
+                title: "Êtes-vous sûr?",
+                text: "Vous ne pourrez pas annuler cela!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Oui, supprimez!",
+                cancelButtonText: "Non,annulez!",
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                window.location.href = `crud/supprimer.php?type=produits&Id=${coopId}`;
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire({
+                    title: "Annulé",
+                    text: "Le produit est en sécurité :)",
+                    icon: "error",
+                });
+                }
+            });
+        });
+        });
+
+    </script>
 </body>
 </html>

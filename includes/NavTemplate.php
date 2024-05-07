@@ -55,13 +55,6 @@
                                                 <li>
                                                     <a href="blog-3-col-mas.php">Blog 3 Col Masonry</a>
                                                 </li>
-                                                <li>
-                                                    <a href="blog-details.php">Blog Details</a>
-                                                </li>
-                                               
-                                                <li>
-                                                    <a href="blog-details-gallery.php">Blog Details Gallery</a>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li>
@@ -75,7 +68,7 @@
                                                     <a href="contact.php">Contact Us</a>
                                                 </li>
                                                 <li>
-                                                    <a href="login.php">login</a>
+                                                    <a href="php/connecter_clt.php">login</a>
                                                 </li>
                                                 <li>
                                                     <a href="register.php">Register</a>
@@ -102,7 +95,7 @@
                                         <a class="search-btn nav-search search-trigger" href="#"><i
                                                 class="fas fa-search"></i></a>
                                     </li>
-                                    <li class="login-btn"><a href="login.php"><i class="far fa-user"></i></a></li>
+                                    <li class="login-btn"><a href="php/connecter_clt.php"><i class="far fa-user"></i></a></li>
                                     <li class="d-shop-cart"><a href="#"><i class="flaticon-shopping-cart"></i> <span
                                                 class="cart-count">3</span></a>
                                         <ul class="minicart">

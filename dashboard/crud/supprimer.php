@@ -1,29 +1,7 @@
 <?php
     session_start();
     include "../../Functions/dbConnexion.php";  
-/*    
-        if (isset($_GET['Id_cat']) ){
 
-            $id = intval($_GET['Id_cat']);
-
-
-            $requete_supprime = $conn->prepare("DELETE FROM CATEGORIES WHERE ID_CATEGORIE = ?");
-            $requete_supprime->bind_param("i", $id); 
-
-            if ($requete_supprime->execute()) { // Exécution de la requête
-                $_SESSION["message_CRUD"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                    Catégorie supprimée avec succès
-                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                </div>";
-            } else {
-                $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                    Erreur lors de la suppression de la catégorie
-                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                </div>";
-            
-            }header("Location: ../categories.php");
-        exit;
-        }*/
         
             if (isset($_GET['type']) && isset($_GET['Id'])) {
                 $entity_type = $_GET['type']; 
@@ -47,7 +25,7 @@
                         break;
 
                     case 'cooperatives':
-                        $requete = $conn->prepare("DELETE FROM UTILISATEURS WHERE ID = ?");
+                        $requete = $conn->prepare("DELETE FROM UTILISATEURS WHERE ID = ? AND ROLE ='cooperative'");
                         $message_success = "Coopérative supprimée avec succès.";
                         break;
 
@@ -62,7 +40,7 @@
 
                 // Si la requête est définie, exécutez-la
                 if (isset($requete)) {
-                    $requete->bind_param("i", $id); // Lier l'ID comme paramètre
+                    $requete->bind_param("i", $id); 
                     if ($requete->execute()) {
                         $_SESSION["message_CRUD"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             $message_success
@@ -80,9 +58,5 @@
                 }
                
             }
-
-/*
-            */
-
 
     ?>

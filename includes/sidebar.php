@@ -16,5 +16,5 @@
     </div>
      
     <div id="main">
-        <button class="openbtn" onclick="openNav()"><i class="fa fa-home"></i></button>
+        <button style="background-color:#1954ca;" class="openbtn" onclick="openNav()"><i class="fa fa-home"></i></button>
     </div>

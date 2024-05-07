@@ -66,7 +66,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="img/product/pro1.jpg"
+                                            <td class="product-thumbnail"><a href="#"><img src="assets/img/product/pro1.jpg"
                                                         alt=""></a></td>
                                             <td class="product-name"><a href="#">Bakix Furniture</a></td>
                                             <td class="product-price"><span class="amount">$130.00</span></td>
@@ -77,7 +77,7 @@
                                             <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="img/product/pro2.jpg"
+                                            <td class="product-thumbnail"><a href="#"><img src="assets/img/product/pro2.jpg"
                                                         alt=""></a></td>
                                             <td class="product-name"><a href="#">Sujon Chair Set</a></td>
                                             <td class="product-price"><span class="amount">$120.50</span></td>

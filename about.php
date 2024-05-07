@@ -92,7 +92,7 @@
             </section>
             <section class="video-area">
                 <div class="bakix-video">
-                    <img src="img/bg/video.jpg" alt="">
+                    <img src="assets/img/bg/video.jpg" alt="">
                     <a class="popup-video" href="https://www.youtube.com/watch?v=Y6MlVop80y0"><i class="fas fa-play"></i></a>
                 </div>
             </section>
@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-xl-5 d-lg-none d-xl-block">
                             <div class="mission-img mb-30">
-                                <img src="img/bg/mission.jpg" alt="">
+                                <img src="assets/img/bg/mission.jpg" alt="">
                             </div>
                         </div>
                         <div class="col-xl-7">
@@ -131,7 +131,7 @@
             </section>
             <section class="big-team-area">
                 <div class="big-image">
-                    <img src="img/bg/banner.jpg" alt="">
+                    <img src="assets/img/bg/banner.jpg" alt="">
                 </div>
                 <div class="container">
                     <div class="row">
@@ -167,7 +167,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="team mb-30">
                                 <div class="team__img">
-                                    <img src="img/team/team4.jpg" alt="">
+                                    <img src="assets/img/team/team4.jpg" alt="">
                                 </div>
                                 <div class="team__content text-center white-bg">
                                     <h4>Salim Rana</h4>
@@ -178,7 +178,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="team mb-30">
                                 <div class="team__img">
-                                    <img src="img/team/team5.jpg" alt="">
+                                    <img src="assets/img/team/team5.jpg" alt="">
                                 </div>
                                 <div class="team__content text-center white-bg">
                                     <h4>James Tablon</h4>
@@ -189,7 +189,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="team mb-30">
                                 <div class="team__img">
-                                    <img src="img/team/team6.jpg" alt="">
+                                    <img src="assets/img/team/team6.jpg" alt="">
                                 </div>
                                 <div class="team__content text-center white-bg">
                                     <h4>Mikado Rikoda</h4>

@@ -5,7 +5,7 @@
                         <div class="col-xl-5 col-lg-6 col-md-6 ">
                             <div class="footer-widget mb-40 pr-70">
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="img/logo/footer-logo.png" alt=""></a>
+                                    <a href="index.html"><img src="assets/img/logo/footer-logo.png" alt=""></a>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore mag na
@@ -14,7 +14,7 @@
                                 </p>
                                 <div class="footer-time d-flex mt-30">
                                     <div class="time-icon">
-                                        <img src="img/icon/time.png" alt="">
+                                        <img src="assets/img/icon/time.png" alt="">
                                     </div>
                                     <div class="time-text">
                                         <span>Got Questions ? Call us 24/7!</span>
@@ -112,6 +112,7 @@
         <script src="assets/js/imagesloaded.pkgd.min.js"></script>
         <script src="assets/js/jquery.magnific-popup.min.js"></script>
         <script src="assets/js/plugins.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="assets/js/main.js"></script>
     </body>
 

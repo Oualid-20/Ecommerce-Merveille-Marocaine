@@ -1,0 +1,95 @@
+.btn {
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.btn span {
+    display: inline-block;
+    margin-left: 0.7rem;
+}
+
+.btn button, .testimonial-animated button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    background-color: hsl(4,99%,60%);
+    padding: 0.7rem;
+    border-radius: 0.3rem;
+    width: 85%;
+    color: white;
+    font-weight: 700;
+    transition: all ease 1s;
+}
+
+.btn button:hover, .testimonial-animated button:hover  {
+    cursor: pointer;
+    box-shadow: 0px 2px 15px 1px hsl(26, 100%, 55%);
+    transform: scale(1.02);
+}
+.btn button, .testimonial-animated button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    background-color: hsl(4,99%,60%);
+    padding: 0.7rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    color: white;
+    font-weight: 700;
+    transition: all ease 1s;
+}
+
+.btn button:hover, .testimonial-animated button:hover  {
+    cursor: pointer;
+    box-shadow: 0px 2px 15px 1px hsl(4,99%,60%);
+    transform: scale(1.02);
+}
+
+.testimonial-animated {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.testimonial-animated:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-animated h2 {
+    font-size: 22px;
+    color: hsl(4,99%,60%);
+    margin-bottom: 15px;
+    text-align: center;
+    animation: fadeInDown 1s ease both;
+}
+
+.testimonial-animated select, .testimonial-animated textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #FE4536;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    animation: zoomIn 0.6s ease both;
+}                    
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -58,7 +58,11 @@ function afficherAdmin() {
 function afficherProduit() {
     global $conn;
 
-    $requeteSelect = "SELECT * FROM PRODUITS";
+    //$requeteSelect = "SELECT * FROM PRODUITS";
+    $requeteSelect = "SELECT p.ID_PDT, p.NOM_PDT, p.DESCRIPTION_PDT, p.PRIX_PDT, p.COOPERATIVE, p.IMAGE_PDT,c.NOM 
+                      FROM PRODUITS p INNER JOIN CATEGORIES c ON p.ID_CATEGORIE = c.ID_CATEGORIE ";
+
+    
 
     $result = $conn->query($requeteSelect);
 
@@ -73,7 +77,9 @@ function afficherProduit() {
 function affichePdt($id) {
     global $conn;
     
-    $requeteSelect = $conn->prepare("SELECT * FROM PRODUITS WHERE ID_PDT = ?");
+    //$requeteSelect = $conn->prepare("SELECT * FROM PRODUITS WHERE ID_PDT = ?");
+    $requeteSelect = $conn->prepare("SELECT p.ID_PDT, p.NOM_PDT, p.DESCRIPTION_PDT, p.PRIX_PDT, p.COOPERATIVE, p.IMAGE_PDT,c.NOM 
+                      FROM PRODUITS p INNER JOIN CATEGORIES c ON p.ID_CATEGORIE = c.ID_CATEGORIE WHERE p.ID_PDT = ? ");
     $requeteSelect->bind_param("i", $id); 
 
     $requeteSelect->execute();

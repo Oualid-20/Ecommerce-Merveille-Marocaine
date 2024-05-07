@@ -40,7 +40,7 @@
                             <td><?=$pdt['ID_PDT']; ?></td>
                             <td><?=$pdt['NOM_PDT']; ?></td>
                             <td><?=$pdt['DESCRIPTION_PDT'];?></td>
-                            <td><?=$pdt['ID_CATEGORIE']; ?></td>
+                            <td><?=$pdt['NOM']; ?></td>
                             <td><?=$pdt['PRIX_PDT'];?> MAD</td>
                             <td><?=$pdt['COOPERATIVE']; ?></td>
                             <td> <img src="<?=$base_path . basename($pdt['IMAGE_PDT']);?>" alt="Produit Image" style="max-width: 60px; max-height: 60px;" /></td>

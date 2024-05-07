@@ -98,7 +98,7 @@
                     }
 
                     .details-product h6 {
-                        color: var(--orange);
+                        color: hsl(26, 100%, 55%);
                         letter-spacing: 0.1rem;
                         margin-bottom: 0.8rem;
                     }
@@ -182,7 +182,7 @@
                         justify-content: center;
                         background: none;
                         border: none;
-                        background-color: var(--orange);
+                        background-color: hsl(26, 100%, 55%);
                         padding: 0.7rem;
                         border-radius: 0.3rem;
                         width: 85%;
@@ -193,7 +193,7 @@
 
                     .btn button:hover, .testimonial-animated button:hover  {
                         cursor: pointer;
-                        box-shadow: 0px 2px 15px 1px var(--orange);
+                        box-shadow: 0px 2px 15px 1px hsl(26, 100%, 55%);
                         transform: scale(1.02);
                     }
 

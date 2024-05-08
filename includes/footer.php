@@ -1,11 +1,11 @@
 <footer class="footer-area pl-100 pr-100">
-            <div class="footer-area box-90 pt-100 pb-60" data-background="img/bg/footer.jpg">
+            <div class="footer-area box-90 pt-100 pb-60" data-background="assets/img/bg/footer.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-6 col-md-6 ">
                             <div class="footer-widget mb-40 pr-70">
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/footer-logo.png" alt=""></a>
+                                    <a href="index.php"><img src="assets/img/logo/footer-logo.png" alt=""></a>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore mag na

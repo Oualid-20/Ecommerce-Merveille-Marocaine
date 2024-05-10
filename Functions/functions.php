@@ -83,7 +83,7 @@ if(!isset($_POST['btn-connecte']) ){
     $utilisateur = mysqli_fetch_assoc($result);
     if ($utilisateur['EMAIL']=== $email){
         if ($utilisateur['MOT_DE_PASSE']=== $password){
-            $_SESSION["user_email"]= $utilisateur["EMAIL"]; $_SESSION["user_password"]= $utilisateur["MOT_DE_PASSE"];
+            $_SESSION["user_email"]= $utilisateur["EMAIL"]; $_SESSION["user_password"]= $utilisateur["MOT_DE_PASSE"];$_SESSION["user_id"]= $utilisateur["ID"];
             $_SESSION["user_role"]= $utilisateur["ROLE"]; $_SESSION["user_tele"]= $utilisateur["TELEPHONE"];
             $_SESSION["user_nom"]= $utilisateur["NOM"]; $_SESSION["user_prenom"]= $utilisateur["PRENOM"];
 
@@ -108,7 +108,50 @@ if(!isset($_POST['btn-connecte']) ){
 }
 
 
+//cinnecte Admin et cooperative
 
+if(!isset($_POST['btn-connecte_admin']) ){
+    $_SESSION["message_cnct"]="<div class='alert alert-danger alert-dismissible fade show' role='alert'> Veuiller remplir les champs
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>";
+    header("location: ../php/connecter_clt.php");  
+} else{
+    $email= $_POST["email"]; $password= htmlspecialchars($_POST["password"]);
+    $req="SELECT * FROM utilisateurs 
+          WHERE EMAIL ='$email' AND MOT_DE_PASSE='$password' ";
+
+    $result = $conn -> query($req);
+    $utilisateur = mysqli_fetch_assoc($result);
+    if ($utilisateur['EMAIL']=== $email){
+        if ($utilisateur['MOT_DE_PASSE']=== $password){
+            $_SESSION["user_email"]= $utilisateur["EMAIL"]; $_SESSION["user_password"]= $utilisateur["MOT_DE_PASSE"];
+            $_SESSION["user_role"]= $utilisateur["ROLE"]; $_SESSION["user_tele"]= $utilisateur["TELEPHONE"];
+            $_SESSION["user_nom"]= $utilisateur["NOM"]; $_SESSION["user_prenom"]= $utilisateur["PRENOM"];
+
+            if($utilisateur["ROLE"] === 'admin' || $utilisateur["ROLE"] === 'cooperative' ){
+
+                header("location:../dashboard/");
+            }
+            else{
+                header("location:../index.php");
+            }
+                
+            
+        }
+        else{
+            $_SESSION["message_cnct"]="<div class='alert alert-danger alert-dismissible fade show' role='alert'> Le Mot De Passe est incorrecte
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+            header("location: ../php/admin.php");  
+        }
+    }
+    else{
+        $_SESSION["message_cnct"]="<div class='alert alert-danger alert-dismissible fade show' role='alert'> L'Email est incorrecte
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+        header("location: ../php/admin.php");  
+    }
+}
 
 
 

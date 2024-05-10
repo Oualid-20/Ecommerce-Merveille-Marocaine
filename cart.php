@@ -5,7 +5,7 @@
     $pageTitle = "Cart-Panier";
     include "includes/HeadTemplate.php";
 
-    include "dashboard/crud/affiche.php";?>
+    include "dashboard/crud/affiche.php";$total_general = 0;?>
     <body>
 
 
@@ -36,7 +36,7 @@
                         <div class="breadcrumb-text text-center">
                             <h1>Shoping Cart</h1>
                             <ul class="breadcrumb-menu">
-                                <li><a href="index.html">home</a></li>
+                                <li><a href="index.html">Home</a></li>
                                 <li><span>Cart</span></li>
                             </ul>
                         </div>
@@ -65,39 +65,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                            if(isset($_SESSION['Panier'])) {
+                                            foreach ($_SESSION['Panier'] as $item):
+                                                $total_general += $item['total']; ?>
                                         <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="assets/img/product/pro1.jpg"
-                                                        alt=""></a></td>
-                                            <td class="product-name"><a href="#">Bakix Furniture</a></td>
-                                            <td class="product-price"><span class="amount">$130.00</span></td>
+                                            <td class="product-thumbnail"><a href="#"><img src="<?=$item['image'];?>" alt="Photo du Produit"></a></td>
+                                            <td class="product-name"><a href="#"><?=$item['produit'];?></a></td>
+                                            <td class="product-price"><span class="amount"><?=$item['prix'];?> DH</span></td>
                                             <td class="product-quantity">
-                                                <div class="cart-plus-minus"><input type="text" value="1" /></div>
+                                                <div class="cart-plus-minus"><input type="text" value="<?=$item['quantite'];?>"/></div>
                                             </td>
-                                            <td class="product-subtotal"><span class="amount">$130.00</span></td>
+                                            <td class="product-subtotal"><span class="amount"><?=$item['total'];?> DH</span></td>
                                             <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="assets/img/product/pro2.jpg"
-                                                        alt=""></a></td>
-                                            <td class="product-name"><a href="#">Sujon Chair Set</a></td>
-                                            <td class="product-price"><span class="amount">$120.50</span></td>
-                                            <td class="product-quantity">
-                                                <div class="cart-plus-minus"><input type="text" value="1" /></div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$120.50</span></td>
-                                            <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                        </tr>
+                                            <?php endforeach ;
+                                        }?>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="coupon-all">
-                                        <div class="coupon">
-                                            <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code"
-                                                type="text">
-                                            <button class="btn theme-btn-2" name="apply_coupon" type="submit">Apply coupon</button>
-                                        </div>
                                         <div class="coupon2">
                                             <input class="btn theme-btn" name="update_cart" value="Update cart" type="submit">
                                         </div>
@@ -109,8 +98,7 @@
                                     <div class="cart-page-total">
                                         <h2>Cart totals</h2>
                                         <ul class="mb-20">
-                                            <li>Subtotal <span>$250.00</span></li>
-                                            <li>Total <span>$250.00</span></li>
+                                            <li>Total <span><?=$total_general;?> DH</span></li>
                                         </ul>
                                         <a class="btn theme-btn" href="#">Proceed to checkout</a>
                                     </div>
@@ -122,8 +110,6 @@
             </div>
         </section>
         <!-- Cart Area End-->
-
-
         </main>
 
         <!-- footer start -->

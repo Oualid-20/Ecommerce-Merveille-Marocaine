@@ -1,4 +1,4 @@
-            <?php $catégories = afficherCategorie();    ?>
+            <?php $catégories = afficherCategorie();   $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($_SESSION['Panier']) : '0';   ?>
         <header>
             <div id="header-sticky" class="header-area box-90">
                 <div class="container-fluid">
@@ -97,23 +97,24 @@
                                     </li>
                                     <li class="login-btn"><a href="php/connecter_clt.php"><i class="far fa-user"></i></a></li>
                                     <li class="d-shop-cart"><a href="#"><i class="flaticon-shopping-cart"></i> <span
-                                                class="cart-count">3</span></a>
+                                                class="cart-count"><?=$nbr_art;?></span></a>
                                         <ul class="minicart">
-                                            <li>
+                                        <?php
+                                            if(isset($_SESSION['Panier'])) {
+                                            foreach ($_SESSION['Panier'] as $item):
+                                                $total_general += $item['total']; ?>
+                                                 <li>
                                                 <div class="cart-img">
-                                                    <a href="product-details.php">
-                                                        <img src="assets/img/product/pro1.jpg" alt="" />
+                                                    <a href="cart.php">
+                                                    <img src="<?=$item['image'];?>" alt="Photo du Produit">
                                                     </a>
                                                 </div>
                                                 <div class="cart-content">
                                                     <h3>
-                                                        <a href="product-details.php">Black & White Shoes</a>
+                                                        <a href="product-details.php"><?=$item['produit'];?></a>
                                                     </h3>
                                                     <div class="cart-price">
-                                                        <span class="new">$ 229.9</span>
-                                                        <span>
-                                                            <del>$239.9</del>
-                                                        </span>
+                                                        <span class="new"><?=$item['prix'];?> DH</span>
                                                     </div>
                                                 </div>
                                                 <div class="del-icon">
@@ -122,56 +123,13 @@
                                                     </a>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="cart-img">
-                                                    <a href="product-details.php">
-                                                        <img src="assets/img/product/pro2.jpg" alt="" />
-                                                    </a>
-                                                </div>
-                                                <div class="cart-content">
-                                                    <h3>
-                                                        <a href="product-details.php">Black & White Shoes</a>
-                                                    </h3>
-                                                    <div class="cart-price">
-                                                        <span class="new">$ 229.9</span>
-                                                        <span>
-                                                            <del>$239.9</del>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="del-icon">
-                                                    <a href="#">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-img">
-                                                    <a href="product-details.php">
-                                                        <img src="assets/img/product/pro3.jpg" alt="" />
-                                                    </a>
-                                                </div>
-                                                <div class="cart-content">
-                                                    <h3>
-                                                        <a href="product-details.php">Black & White Shoes</a>
-                                                    </h3>
-                                                    <div class="cart-price">
-                                                        <span class="new">$ 229.9</span>
-                                                        <span>
-                                                            <del>$239.9</del>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="del-icon">
-                                                    <a href="#">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </a>
-                                                </div>
-                                            </li>
+                                            <?php endforeach ;
+                                        }?>
+                                            
                                             <li>
                                                 <div class="total-price">
                                                     <span class="f-left">Total:</span>
-                                                    <span class="f-right">$300.0</span>
+                                                    <span class="f-right"><?=$total_general;?> DH</span>
                                                 </div>
                                             </li>
                                             <li>

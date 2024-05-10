@@ -43,15 +43,29 @@
 
 
         $image_path = 'uploads/produits/'.basename($img_produit);
-        
-        // Ajouter au panier
-        $_SESSION['Panier'][] = [
-            'produit' => $nom_produit,
-            'quantite' => $quantite,
-            'prix' => $prix_produit,
-            'total' => $quantite * $prix_produit,
-            'image' => $image_path
-        ];
+
+
+        $produit_existe = false;
+
+        foreach ($_SESSION['Panier'] as &$item) { 
+            if ($item['produit'] === $nom_produit) {
+                $item['quantite'] += $quantite; 
+                $item['total'] = $item['quantite'] * $item['prix']; 
+                $produit_existe = true; 
+                break; 
+            }
+        }
+    
+        // Si le produit n'existe pas, l'ajouter au panier
+        if (!$produit_existe) {
+            $_SESSION['Panier'][] = [
+                'produit' => $nom_produit,
+                'quantite' => $quantite,
+                'prix' => $prix_produit,
+                'total' => $quantite * $prix_produit,
+                'image' => $image_path
+            ];
+        }
     } else {
         echo "Produit non trouvé.";
         exit;

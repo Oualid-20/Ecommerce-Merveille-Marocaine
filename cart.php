@@ -5,7 +5,7 @@
     $pageTitle = "Cart-Panier";
     include "includes/HeadTemplate.php";
 
-    include "dashboard/crud/affiche.php";$total_general = 0;?>
+    include "dashboard/crud/affiche.php";$total_general = 0;   //unset($_SESSION['Panier']);?>
     <body>
 
 

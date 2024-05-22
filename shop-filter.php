@@ -6,15 +6,35 @@
     //include "includes/HeadTemplate.php";
     include "includes/HeadTemplate.php";
 
-    include "dashboard/crud/affiche.php"; $produits = afficherProduit(); $base_path = 'uploads/produits/'; ?>
+    include "dashboard/crud/affiche.php"; $base_path = 'uploads/produits/'; 
+    
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+        $produits = afficherProduit($page);
+
+        // Exécuter la requête pour compter le nombre total de produits
+        $result1 = $conn->query("SELECT COUNT(ID_PDT) AS total FROM PRODUITS");
+        if ($result1) {
+            $rowCount = $result1->fetch_assoc(); 
+            $total = $rowCount['total'];
+        } else {
+            // Gérer les erreurs de requête SQL
+            die("Erreur de requête SQL : " . $conn->error);
+        }
+
+        $perPage = 9; 
+        $pages = ceil($total / $perPage); 
+
+        $Previous = $page - 1;
+        $Next = $page + 1;
+    
+    ?>
 
 
 
     <body>
 
-
         <!-- preloader -->
-        
         <div id="preloader">
             <div class="preloader">
                 <span></span>
@@ -60,7 +80,7 @@
                         <div class="row">
                             <div class="col-xl-5 col-lg-5 col-md-6">
                                 <div class="product-showing mb-40">
-                                  <!--  <p>Showing 1–22 of 32 results</p> -->
+                                  <!--  <p>Showing 1–9 of 32 results</p> -->
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-6">
@@ -80,51 +100,46 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            
+                        <div class="row">      
                         </div>
                         <!-- tab content -->
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
-                                    <?php $produits = afficherProduit();
-                                            $base_path = '../uploads/produits/';  
+                                    <?php    
                                             foreach ($produits as $pdt) {
                                     ?>
                                     <div class="col-lg-4 col-md-6">
+
                                         <div class="product-wrapper mb-50">
                                             <div class="product-img mb-25">
                                                 <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>">
-                                                    <img src="assets/img/product/pro14.jpg" alt="">
-                                                    <img class="secondary-img" src="assets/img/product/pro14.jpg" alt="">
+                                                    <img src="<?=$base_path . basename($pdt['IMAGE_PDT']);?>" alt="Image1">
+                                                    <img class="secondary-img" src="<?=$base_path . basename($pdt['IMAGE2_PDT']);?>" alt="Image2">
                                                 </a>
                                                 <div class="product-action text-center">
-                                                    <a href="#" title="Shoppingb Cart">
+                                                    <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>" title="Shoppingb Cart">
                                                         <i class="flaticon-shopping-cart"></i>
                                                     </a>
-                                                    <a href="#" title="Quick View">
+                                                    <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>" title="Quick View">
                                                         <i class="flaticon-eye"></i>
-                                                    </a>
-                                                    <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                                        <i class="flaticon-compare"></i>
                                                     </a>
                                                 </div>
                                                 <div class="sale-tag">
-                                                    <span class="new">new</span>
                                                     <span class="sale">sale</span>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <div class="pro-cat mb-10">
-                                                    <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>">decor, </a>
-                                                    <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>">furniture</a>
+                                                    <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>"><?=$pdt['NOM'];?>, </a><br>
+                                                    <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>"><?=$pdt['COOPERATIVE'];?></a>
                                                 </div>
                                                 <h4>
                                                     <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>"><?=$pdt['NOM_PDT'];?></a>
                                                 </h4>
                                                 <div class="product-meta">
                                                     <div class="pro-price">
-                                                        <span><?=$pdt['PRIX_PDT'];?> MAD</span>
+                                                        <span><?=$pdt['PRIX_PDT'];?> $</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,8 +150,8 @@
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
-                                <?php $produits = afficherProduit();
-                                            $base_path = 'uploads/produits/';  
+                                <?php 
+                                             
                                             foreach ($produits as $pdt) {
                                     ?>
                                     <div class="col-xl-4 col-lg-4">
@@ -164,15 +179,15 @@
                                             </h4>
                                             <div class="product-meta mb-10">
                                                 <div class="pro-price">
-                                                    <span><?=$pdt['PRIX_PDT'];?> MAD</span>
+                                                    <span><?=$pdt['PRIX_PDT'];?> $</span>
                                                 </div>
                                             </div>
                                             <p><?=$pdt['DESCRIPTION_PDT'];?>.</p>
                                             <div class="product-action">
-                                                <a href="#" title="Shoppingb Cart">
+                                                <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>" title="Shoppingb Cart">
                                                     <i class="flaticon-shopping-cart"></i>
                                                 </a>
-                                                <a href="#" title="Quick View">
+                                                <a href="product-simple.php?id_pdt=<?=$pdt['ID_PDT'];?>&nom_pdt=<?=$pdt['NOM_PDT'];?>" title="Quick View">
                                                     <i class="flaticon-eye"></i>
                                                 </a>
                                             </div>
@@ -182,14 +197,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="basic-pagination basic-pagination-2 text-center mt-20 mb-0" >
+                       
+                    <!-- Pagination-->
+                        <div class="basic-pagination basic-pagination-2 text-center mt-20 mb-0">
                             <ul>
-                                <li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-                                <li><a href="#">01</a></li>
-                                <li class="active"><a href="#">02</a></li>
-                                <li><a href="#">03</a></li>
-                                <li><a href="#"><i class="fas fa-ellipsis-h"></i></a></li>
-                                <li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                <?php if ($Previous > 0): ?>
+                                    <li><a href="shop-filter.php?page=<?= $Previous; ?>"><i class="fas fa-angle-double-left"></i></a></li>
+                                <?php endif; ?>
+
+                                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                                    <li class="<?= $i == $page ? 'active' : ''; ?>"><a href="shop-filter.php?page=<?= $i; ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT); ?></a></li>
+                                <?php endfor; ?>
+
+                                <?php if ($Next <= $pages): ?>
+                                    <li><a href="shop-filter.php?page=<?= $Next; ?>"><i class="fas fa-angle-double-right"></i></a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -273,7 +295,7 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="copyright text-center">
-                                    <p>Copyright © 2023-2024 <a href="#">Merveille Marocaine</a>. All Rights Reserved</p>
+                                    <p>Copyright © 2023-2024 <a href="#">Yalla Wonders</a>. All Rights Reserved</p>
                                 </div>
                             </div>
                         </div>

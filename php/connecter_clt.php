@@ -15,7 +15,7 @@
             </div>
             <div class="description">
                 <h2>Nouveau ici?</h2>
-                <p>Merveille Marocaine est un site e-com conçue pour vendre l'artisanat du Maroc.</p> <br>
+                <p>Moroccan Marvel est un site e-com conçue pour vendre l'artisanat du Maroc.</p> <br>
                 <button class="bouton-login"><a href="/merveille_marocaine/php/s'inscrire.php"> S'INSCRIRE</a></button>
             </div>
         </div>

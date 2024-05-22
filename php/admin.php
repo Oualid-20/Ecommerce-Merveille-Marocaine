@@ -1,8 +1,8 @@
 <?php
     session_start();
     $pageTitle = "Admin Login";
-    include"../includes/head.php";
-    include_once"../Functions/sessionConnect.php";
+    include "../includes/head.php";
+    include_once "../Functions/sessionConnect.php";
 
 ?>
     <link rel="stylesheet" href="/merveille_marocaine/assets/css/connexion.css">
@@ -22,7 +22,7 @@
                 <h2>Admin</h2> <br>
                 <input class='mb-3' name="email"type="email" placeholder="Email" required>
                 <input class='mb-3' name="password" type="password" placeholder="Mot de passe" required>
-                <button type="submit" name="btn-connecte_admin" class="bouton-connexion">CONNEXION</button>
+                <button type="submit" name="btn-connecte" class="bouton-connexion">CONNEXION</button>
             </form>
             </div>
         </div>

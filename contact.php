@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contact-form" action="#">
+                        <form id="contact-form" action="Functions/functions.php">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-box user-icon mb-30">
@@ -124,7 +124,7 @@
                                         <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
                                     </div>
                                     <div class="contact-btn text-center">
-                                        <button class="btn theme-btn" type="submit">get action</button>
+                                        <button class="btn theme-btn" name='contactUs' type="submit">get action</button>
                                     </div>
                                 </div>
                             </div>

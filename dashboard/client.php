@@ -3,22 +3,46 @@
     $pageTitle = "Client";
     include "../Functions/dbConnexion.php";
     include "../includes/head.php" ;
-   // include_once"../Functions/verificationRole.php";
+
+    if (!isset($_SESSION['user_role'])) {
+        header("location:../php/connecter_clt.php");
+            
+    } 
+
+    $userRole = $_SESSION['user_role'];
+    if ($userRole === 'client') {
+
+        header("location:../index.php");
+     } elseif ($userRole === 'cooperative') {
+
+        header("location:produits.php");
+         exit(); 
+     }
+
+
+
+
     include "crud/affiche.php"; 
 
      include "../includes/navDashboard.php" ;
      include "../includes/sidebar.php";
 
-            // Récupérer le numéro de page depuis l'URL
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-        // Définir le nombre d'éléments par page
-        $perPage = 10;
-        // Récupérer les clients pour la page actuelle
-        $clients = afficherClient($page, $perPage);
-
-        $totalClients = $conn->query("SELECT COUNT(*) AS count FROM UTILISATEURS WHERE ROLE = 'client'")->fetch_assoc()['count'];
-        $totalPages = ceil($totalClients / $perPage);
+        $clients = afficherClient($page);
+        
+        $result1 = $conn->query("SELECT COUNT(id) AS id FROM UTILISATEURS WHERE ROLE = 'client'");
+        if ($result1) {
+            $custCount = $result1->fetch_assoc(); 
+            $total = $custCount['id'];
+        } else {
+            // Gérer les erreurs de requête SQL
+            die("Erreur de requête SQL : " . $conn->error);
+        }
+        
+        $pages = ceil($total / 9); // Toujours diviser par 9 pour obtenir le nombre total de pages
+        $Previous = $page - 1;
+        $Next = $page + 1;
      ?>
 
 <div id="main-content" class="container allContent-section py-4">
@@ -51,18 +75,24 @@
         </tbody>
     </table>
 
-    <div class="pagination">
-        <?php if ($page > 1): ?>
-            <a href="?page=<?php echo $page - 1; ?>">Précédent</a>
-        <?php endif; ?>
-        
-        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-            <a href="?page=<?php echo $i; ?>"<?php if ($i == $page) echo ' class="active"'; ?>><?php echo $i; ?></a>
-        <?php endfor; ?>
-        
-        <?php if ($page < $totalPages): ?>
-            <a href="?page=<?php echo $page + 1; ?>">Suivant</a>
-        <?php endif; ?>
+    <div class="pagination" style="justify-content: center;">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item <?= $Previous <= 0 ? 'disabled' : '' ?>">
+                    <a class="page-link" href="client.php?page=<?= $Previous <= 0 ? 1 : $Previous; ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                    </a>
+                </li>
+                <?php for($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="client.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                <?php endfor; ?>
+                <li class="page-item <?= $Next > $pages ? 'disabled' : '' ?>">
+                    <a class="page-link" href="client.php?page=<?= $Next > $pages ? $pages : $Next; ?>" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
     <script type="text/javascript" src="/merveille_marocaine//assets/js/script.js"></script>

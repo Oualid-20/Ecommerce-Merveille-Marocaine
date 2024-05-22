@@ -40,7 +40,7 @@
                 <img src="/merveille_marocaine/assets/img/s'inscrire.png" alt="illustrateur">
             </div>
             <div class="description">
-                <p>Un des nôtres ? Merveille Marocaine Chaque jour est défi!</p>
+                <p>Un des nôtres ? Moroccan Marvel Chaque jour est défi!</p>
                 <p> Il n’y a pas de temps à s’ennuyer dans un monde aussi beau que celui-ci.</p>
             </div>
             <button class="bouton-login"><a href="/merveille_marocaine/php/connecter_clt.php">SE CONNECTER</a></button>

@@ -55,50 +55,71 @@
         //ajouter un pdt 
 
 
-        if ($_POST["type"]=="produit") {            
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["ajouter_pdt"])  ) {
-
-                $nom_pdt = $_POST["NOM_PDT"];$cat_du_pdt=$_POST["nom_cat"];
-                    $description_pdt = $_POST["DESCRIPTION_PDT"]; $prix_pdt=$_POST["PRIX_PDT"];
-                    $image = $_FILES['IMAGE_PDT']['name']; $cooperative=$_POST["nom_coop"];
-    
-                    $destination = '../../uploads/produits/' . uniqid() . $image;  //stock
-                        if (!move_uploaded_file($_FILES['IMAGE_PDT']['tmp_name'], $destination)) {
-                            
-                            $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                Erreur lors du déplacement de l'image du pdt
-                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            </div>";
-                            header("Location: ../produits.php");
-                            exit;
-                        }
-                    
-                        $requete_insert = $conn->prepare("INSERT INTO PRODUITS (ID_CATEGORIE, NOM_PDT, DESCRIPTION_PDT, PRIX_PDT, IMAGE_PDT, COOPERATIVE) 
-                                                        VALUES (?, ?, ?, ?, ?, ?)");
-                        $requete_insert->bind_param( "issdss",$cat_du_pdt,$nom_pdt, $description_pdt, $prix_pdt, $destination, $cooperative);
-                    
-                        if ($requete_insert->execute()) {
-                            $_SESSION["message_CRUD"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                Produit ajoutée avec succès
-                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            </div>";
-                        } else {
-                            $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                Erreur lors de l'ajout du produites
-                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            </div>";
-                        }
-                        header("Location: ../produits.php");
-                        exit;
-                }else {
-                    $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            Veuillez remplir les champs
+        if ($_POST["type"] == "produit") {            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["ajouter_pdt"])) {
+        
+                $nom_pdt = $_POST["NOM_PDT"];
+                $cat_du_pdt = $_POST["nom_cat"];
+                $description_pdt = $_POST["DESCRIPTION_PDT"];
+                $prix_pdt = $_POST["PRIX_PDT"];
+                $cooperative = $_POST["nom_coop"];
+                $upload_folder = '../../uploads/produits/';
+        
+                // Fonction pour déplacer le fichier et retourner le chemin ou une erreur
+                function upload_image($file, $upload_folder) {
+                    $image_name = uniqid() . $file['name'];
+                    $destination = $upload_folder . $image_name;
+                    if (move_uploaded_file($file['tmp_name'], $destination)) {
+                        return $destination;
+                    } else {
+                        return false;
+                    }
+                }
+        
+                // Upload de la première image
+                $image1 = upload_image($_FILES['IMAGE_PDT'], $upload_folder);
+                // Upload de la deuxième image
+                $image2 = upload_image($_FILES['IMAGE2_PDT'], $upload_folder);
+                // Upload de la troisième image
+                $image3 = upload_image($_FILES['IMAGE3_PDT'], $upload_folder);
+        
+                if ($image1 && $image2 && $image3) {
+                    $requete_insert = $conn->prepare(
+                        "INSERT INTO PRODUITS (ID_CATEGORIE, NOM_PDT, DESCRIPTION_PDT, PRIX_PDT, IMAGE_PDT, IMAGE2_PDT, IMAGE3_PDT, COOPERATIVE) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                    );
+                    $requete_insert->bind_param("issdssss", $cat_du_pdt, $nom_pdt, $description_pdt, $prix_pdt, $image1, $image2, $image3, $cooperative);
+        
+                    if ($requete_insert->execute()) {
+                        $_SESSION["message_CRUD"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            Produit ajouté avec succès
                             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>";
-                    header("Location: ../produits.php");
-                    exit; 
-            } 
-    }   
+                    } else {
+                        $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            Erreur lors de l'ajout du produit
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+                    }
+                } else {
+                    $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Erreur lors du déplacement des images du produit
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                }
+        
+                header("Location: ../produits.php");
+                exit;
+            } else {
+                $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                    Veuillez remplir les champs
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>";
+                header("Location: ../produits.php");
+                exit; 
+            }
+        }
+           
                 
             // ajouter admin 
             

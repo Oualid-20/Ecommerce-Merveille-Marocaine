@@ -8,8 +8,8 @@
     
     <div class="user-cart">  
        
-          <a href="../Functions/déconnexion.php" style="text-decoration:none;">
-            <i class="fa fa-user mr-5" style="font-size:30px; color:#fff;" aria-hidden="true"></i>
+          <a href="../Functions/deconnexion.php" style="text-decoration:none;">
+            <i class="fa fa-user mr-5" style="font-size:30px; color:#fff;" ></i>
          </a>  
     </div>  
 </nav>

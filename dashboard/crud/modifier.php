@@ -56,55 +56,98 @@
         //modifier un pdt 
 
 
-            if ($_POST["type"]=="produit") {            
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier_produit'])) {
-                    $id = $_POST['id_pdt'];
-                    $nom = mysqli_real_escape_string($conn, $_POST['NOM_PDT']);
-                    $description = mysqli_real_escape_string($conn, $_POST['DESCRIPTION_PDT']);
-                    $prix = mysqli_real_escape_string($conn, $_POST['PRIX_PDT']);
-                    $id_cat = $_POST['nom_cat'];
-                    $cooperative = $_POST['nom_coop'];
-                    
-                    $image_path = null;
-                
-                    if (!empty($_FILES['IMAGE_PDT']['name'])) {
-                        $image = $_FILES['IMAGE_PDT']['name'];
-                        $destination = '../../uploads/produits/' . uniqid() . $image;
-                
-                        if (!move_uploaded_file($_FILES['IMAGE_PDT']['tmp_name'], $destination)) {
-                            $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> Erreur lors du déplacement de l'image
-                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            </div>";
-                            header("Location: ../produits.php");
-                            exit;
-                        }
-                
-                        $image_path = $destination;
-                    }
-                
-                    // Si une nouvelle image est fournie, mettez à jour avec elle
-                    if ($image_path) {
-                        $query_update = "UPDATE PRODUITS SET NOM_PDT = ?, DESCRIPTION_PDT = ?, PRIX_PDT = ?, ID_CATEGORIE = ?, COOPERATIVE = ?, IMAGE_PDT = ? WHERE ID_PDT = ?";
-                        $stmt = $conn->prepare($query_update);
-                        $stmt->bind_param("ssdisss", $nom, $description, $prix, $id_cat, $cooperative, $image_path, $id);
-                    } else {
-                        // Si aucune nouvelle image n'est fournie
-                        $query_update = "UPDATE PRODUITS SET NOM_PDT = ?, DESCRIPTION_PDT = ?, PRIX_PDT = ?, ID_CATEGORIE = ?, COOPERATIVE = ? WHERE ID_PDT = ?";
-                        $stmt = $conn->prepare($query_update);
-                        $stmt->bind_param("ssdiss", $nom, $description, $prix, $id_cat, $cooperative, $id);
-                    }
-                
-                    if ($stmt->execute()) {
-                        $_SESSION["message_CRUD"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'> Produit mis à jour avec succès
+        if ($_POST["type"] == "produit") {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier_produit'])) {
+                // Récupération des données du formulaire
+                $id = $_POST['id_pdt'];
+                $nom = mysqli_real_escape_string($conn, $_POST['NOM_PDT']);
+                $description = mysqli_real_escape_string($conn, $_POST['DESCRIPTION_PDT']);
+                $prix = mysqli_real_escape_string($conn, $_POST['PRIX_PDT']);
+                $id_cat = $_POST['nom_cat']; 
+                $cooperative = $_POST['nom_coop'];
+        
+                // Définition des chemins d'images par défaut
+                $image_path = null;
+                $image2_path = null;
+                $image3_path = null;
+        
+                // Vérification et traitement de la première image
+                if (!empty($_FILES['IMAGE_PDT']['name'])) {
+                    $image = $_FILES['IMAGE_PDT']['name'];
+                    $destination = '../../uploads/produits/' . uniqid() . $image;
+        
+                    if (!move_uploaded_file($_FILES['IMAGE_PDT']['tmp_name'], $destination)) {
+                        // Gestion de l'erreur si le déplacement de l'image échoue
+                        $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> Erreur lors du déplacement de l'image
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>";
-                    } else {
-                        $_SESSION["message_CRUD"] = "<div class='alert alert-danger'>Erreur lors de la mise à jour du produit</div>";
+                        header("Location: ../produits.php");
+                        exit;
                     }
-                
-                    header("Location: ../produits.php");
+        
+                    $image_path = $destination;
                 }
+        
+                // Vérification et traitement de la deuxième image
+                if (!empty($_FILES['IMAGE2_PDT']['name'])) {
+                    $image2 = $_FILES['IMAGE2_PDT']['name'];
+                    $destination2 = '../../uploads/produits/' . uniqid() . $image2;
+        
+                    if (!move_uploaded_file($_FILES['IMAGE2_PDT']['tmp_name'], $destination2)) {
+                        // Gestion de l'erreur si le déplacement de l'image 2 échoue
+                        $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> Erreur lors du déplacement de l'image 2
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+                        header("Location: ../produits.php");
+                        exit;
+                    }
+                    $image2_path = $destination2;
+                }
+        
+                // Vérification et traitement de la troisième image
+                if (!empty($_FILES['IMAGE3_PDT']['name'])) {
+                    $image3 = $_FILES['IMAGE3_PDT']['name'];
+                    $destination3 = '../../uploads/produits/' . uniqid() . $image3;
+        
+                    if (!move_uploaded_file($_FILES['IMAGE3_PDT']['tmp_name'], $destination3)) {
+                        // Gestion de l'erreur si le déplacement de l'image 3 échoue
+                        $_SESSION["message_CRUD"] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> Erreur lors du déplacement de l'image 3
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+                        header("Location: ../produits.php");
+                        exit;
+                    }
+        
+                    $image3_path = $destination3;
+                }
+        
+                // Mise à jour de la base de données en fonction des images fournies ou non
+                if ($image_path || $image2_path || $image3_path) {
+                    // Si au moins une nouvelle image est fournie
+                    $query_update = "UPDATE PRODUITS SET NOM_PDT = ?, DESCRIPTION_PDT = ?, PRIX_PDT = ?, ID_CATEGORIE = ?, COOPERATIVE = ?, IMAGE_PDT = ?, IMAGE2_PDT = ?, IMAGE3_PDT = ? WHERE ID_PDT = ?";
+                    $stmt = $conn->prepare($query_update);
+                    $stmt->bind_param("ssdissssi", $nom, $description, $prix, $id_cat, $cooperative, $image_path, $image2_path, $image3_path, $id);
+                } else {
+                    // Si aucune nouvelle image n'est fournie, conservez les images existantes
+                    $query_update = "UPDATE PRODUITS SET NOM_PDT = ?, DESCRIPTION_PDT = ?, PRIX_PDT = ?, ID_CATEGORIE = ?, COOPERATIVE = ? WHERE ID_PDT = ?";
+                    $stmt = $conn->prepare($query_update);
+                    $stmt->bind_param("ssdissi", $nom, $description, $prix, $id_cat, $cooperative, $id);
+                }
+        
+                // Exécution de la requête SQL
+                if ($stmt->execute()) {
+                    $_SESSION["message_CRUD"] = "<div class='alert alert-success alert-dismissible fade show' role='alert'> Produit mis à jour avec succès
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                } else {
+                    $_SESSION["message_CRUD"] = "<div class='alert alert-danger'>Erreur lors de la mise à jour du produit</div>";
+                }
+        
+                // Redirection vers la page des produits
+                header("Location: ../produits.php");
             }
+        }
+        
                 
             // modifier admin 
             

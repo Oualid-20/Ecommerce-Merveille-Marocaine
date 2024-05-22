@@ -4,7 +4,50 @@
         include "../Functions/dbConnexion.php";
         include "../includes/head.php";
 
+
+
+        if (!isset($_SESSION['user_role'])) {
+            header("location:../php/connecter_clt.php");
+                
+        } 
+
+        $userRole = $_SESSION['user_role'];
+        if ($userRole === 'client') {
+             // Redirigez le client vers la page d'accueil
+             header("location:../index.php");
+         } elseif ($userRole === 'cooperative') {
+             // Redirigez la coopérative vers produits.php
+             header("location:produits.php");
+             exit(); // Arrêtez l'exécution du script après la redirection
+         }
+
+
+
+
+
+
         include "crud/affiche.php";   
+
+
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+        // Récupérer les catégories en utilisant la fonction afficherCategoriePag
+        $categories = afficherCategorie($page);
+        
+        // Exécuter la requête pour compter le nombre total de catégories
+        $result1 = $conn->query("SELECT COUNT(id_categorie) AS id FROM CATEGORIES");
+        if ($result1) {
+            $catCount = $result1->fetch_assoc(); // Utiliser fetch_assoc pour un seul résultat
+            $total = $catCount['id'];
+        } else {
+            // Gérer les erreurs de requête SQL
+            die("Erreur de requête SQL : " . $conn->error);
+        }
+        
+        $pages = ceil($total / 9); // Toujours diviser par 9 pour obtenir le nombre total de pages
+        $Previous = $page - 1;
+        $Next = $page + 1;
+
         //dashboard
         include "../includes/navDashboard.php"; 
         include "../includes/sidebar.php"; ?>
@@ -32,7 +75,7 @@
             <tbody>
             <!--affichage du tableau-->
                <?php
-                    $categories = afficherCategorie(); 
+                    
                     $base_path = '../uploads/icones/'; 
                     foreach ($categories as $categorie) {
                         ?>
@@ -52,7 +95,27 @@
                 }                 
                  ?>
             </tbody>
-        </table>                    
+        </table>
+       <!--  pagination -->
+            <div class="pagination" style="justify-content: center;">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item <?= $Previous <= 0 ? 'disabled' : '' ?>">
+                            <a class="page-link" href="categories.php?page=<?= $Previous <= 0 ? 1 : $Previous; ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo; Previous</span>
+                            </a>
+                        </li>
+                        <?php for($i = 1; $i <= $pages; $i++): ?>
+                            <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="categories.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                        <?php endfor; ?>
+                        <li class="page-item <?= $Next > $pages ? 'disabled' : '' ?>">
+                            <a class="page-link" href="categories.php?page=<?= $Next > $pages ? $pages : $Next; ?>" aria-label="Next">
+                                <span aria-hidden="true">Next &raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>                   
                            <!-- The Modal pour inserer  -->
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog modal-dialog-centered modal-lg">

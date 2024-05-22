@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="copyright text-center">
-                                    <p>Copyright © 2023-2024 <a href="#">Merveille Marocaine</a>. All Rights Reserved</p>
+                                    <p>Copyright © 2023-2024 <a href="#">Yalla Wonders</a>. All Rights Reserved</p>
                                 </div>
                             </div>
                         </div>
@@ -101,6 +101,7 @@
         <script src="assets/js/jquery-ui.js"></script>
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/isotope.pkgd.min.js"></script>
         <script src="assets/js/slick.min.js"></script>

@@ -16,6 +16,8 @@
                 }
     ?>
          <link rel="stylesheet" href="assets/css/btnTestemonial.css">
+         <link rel="stylesheet" href="assets/css/navIMG.css">
+
     <body>
 
         <!-- preloader -->
@@ -64,9 +66,38 @@
                                         <img src="<?=$base_path . basename($pdt['IMAGE_PDT']);?>" alt="Photo du Produit">
                                     </div>
                                 </div>
+                                 <!-- image2 -->
+                                <div class="tab-pane fade" id="profile" role="tabpanel">
+                                    <div class="product-large-img">
+                                    <?php echo isset($pdt['IMAGE2_PDT']) ? '<img src="' . $base_path . basename($pdt['IMAGE2_PDT']) . '" alt="Photo2 du Produit">' : ''; ?>
+
+                                    </div>
+                                </div>
+                                 <!-- image3 -->
+                                <div class="tab-pane fade" id="profile1" role="tabpanel">
+                                    <div class="product-large-img">
+                                        <img src="<?=$base_path . basename($pdt['IMAGE3_PDT']);?>" alt="Photo3 du Produit">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
+                                 <!--Nav des images -->
+                        <div class="shop-thumb-tab mb-30">
+                            <ul class="nav" id="myTab2" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-selected="true"><img
+                                            src="<?=$base_path . basename($pdt['IMAGE_PDT']);?>" alt=""> </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-selected="false"><?php
+                                        echo isset($pdt['IMAGE2_PDT']) ? '<img src="' . $base_path . basename($pdt['IMAGE2_PDT']) . '" alt="Photo du Produit">' : '';?>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile1" role="tab" aria-selected="false"><img
+                                            src="<?=$base_path . basename($pdt['IMAGE3_PDT']);?>" alt="Image3"></a>
+                                </li>
+                            </ul>
+                        </div>                        
                     </div>
                     <div class="col-xl-6 col-lg-8">
                         <div class="product-details mb-30 pl-30">
@@ -75,10 +106,9 @@
                             </div>
                             <h2 class="pro-details-title mb-15"><?=$pdt['NOM_PDT'];?></h2>
                             <div class="details-price mb-20">
-                                <span><?=$pdt['PRIX_PDT'];?> MAD</span>
+                                <span><?=$pdt['PRIX_PDT'];?> $</span>
                             </div>
                             <div class="product-variant">
-
 
                                 <div class="product-desc variant-item">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -98,11 +128,12 @@
                                             <div class="plus-minus">
                                                 <div class="cart-plus-minus"><input name="quantity" type="text" value="1" /></div>
                                             </div>
-                                            <div class="details-cart mt-40">
-                                                <button class="btn theme-btn">purchase now</button>
-                                            </div>
+                                            <!--
+                                                <div class="details-cart mt-40">
+                                                    <button class="btn theme-btn">purchase now</button>
+                                                </div>
+                                            -->
                                             <div class="btn">
-                                                
                                                 <button type="submit" id="add-product"><svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
@@ -130,7 +161,7 @@
                                     <div class="desc-text">
                                         <section class="testimonial-animated">
                                             <h2>Partagez votre expérience</h2>
-                                            <form method="post" action="submit_review.php">
+                                            <form method="post" action="Functions/functions.php">
                                                 <label for="rating">Votre note :</label>
                                                 <select name="rating" id="rating" required>
                                                     <option value="">--Choisissez une note--</option>
@@ -144,7 +175,7 @@
                                                 <label for="testimonial">Votre témoignage :</label>
                                                 <textarea name="testimonial" id="testimonial" rows="4" required></textarea>
 
-                                                <button type="submit" class="disabled">Envoyer</button>
+                                                <button type="submit" name='review'class="">Envoyer</button>
                                             </form>
                                         </section>
                                     </div>
@@ -184,20 +215,17 @@
                                         <img class="secondary-img" src="<?=$base_path.basename($produit['IMAGE_PDT']);?>" alt="Photo de Produit">
                                     </a>
                                     <div class="product-action text-center">
-                                        <a href="#" title="Shoppingb Cart">
+                                        <a href="product-simple.php?id_pdt=<?=$produit['ID_PDT'];?>&nom_pdt=<?=$produit['NOM_PDT'];?>" title="Shoppingb Cart">
                                             <i class="flaticon-shopping-cart"></i>
                                         </a>
-                                        <a href="#" title="Quick View">
+                                        <a href="product-simple.php?id_pdt=<?=$produit['ID_PDT'];?>&nom_pdt=<?=$produit['NOM_PDT'];?>" title="Quick View">
                                             <i class="flaticon-eye"></i>
-                                        </a>
-                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                            <i class="flaticon-compare"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="product-content">
                                     <div class="pro-cat mb-10">
-                                        <a href="shop-filter.php">decor, </a>
+                                        <a href="shop-filter.php"><?=$pdt['NOM'];?>, </a>
                                         <a href="shop-filter.php"><?=$produit['COOPERATIVE'];?></a>
                                     </div>
                                     <h4>
@@ -205,7 +233,7 @@
                                     </h4>
                                     <div class="product-meta">
                                         <div class="pro-price">
-                                            <span><?=$produit['PRIX_PDT'];?> MAD</span>
+                                            <span><?=$produit['PRIX_PDT'];?> $</span>
                                         </div>
                                     </div>
                                 </div>

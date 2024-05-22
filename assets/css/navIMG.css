@@ -1,0 +1,27 @@
+.shop-thumb-tab .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Espace entre les images */
+}
+
+.shop-thumb-tab .nav-item {
+    flex: 1;
+}
+
+.shop-thumb-tab .nav-link {
+    display: block;
+    padding: 0;
+    border: none;
+}
+
+.shop-thumb-tab .nav-link img {
+    width: 100px; /* Largeur des images */
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px; /* Optionnel : coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optionnel : ombre pour les images */
+}
+
+.shop-thumb-tab .nav-link.active img {
+    border: 2px solid #ee6124; /* Bordure pour l'image active */
+}

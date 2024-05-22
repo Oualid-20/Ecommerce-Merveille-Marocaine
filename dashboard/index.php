@@ -1,19 +1,46 @@
 <?php 
-    //session_start();
+    session_start();
     $pageTitle = "Dashboard";
     include "../Functions/dbConnexion.php";
     include "../includes/head.php" ;
-   // include_once"../Functions/verificationRole.php";
-   $nbrAdmins = $conn->query("SELECT COUNT(*) AS total FROM utilisateurs WHERE ROLE='admin'")->fetch_assoc()['total'];
-   $nbrClients = $conn->query("SELECT COUNT(*) AS total FROM utilisateurs WHERE ROLE='client'")->fetch_assoc()['total'];
-   $nbrCooperatives = $conn->query("SELECT COUNT(*) AS total FROM utilisateurs WHERE ROLE='cooperative'")->fetch_assoc()['total'];
-   $nbrCategories = $conn->query("SELECT COUNT(*) AS total FROM categories")->fetch_assoc()['total'];
 
-?>
+            // Vérification du rôle de l'utilisateur
+            if (!isset($_SESSION['user_role'])) {
+                header("location:../php/connecter_clt.php");
+                    
+            } 
 
-    <?php include"../includes/navDashboard.php" ?>
-<!-- Sidebar -->
-    <?php include"../includes/sidebar.php" ?>
+            $userRole = $_SESSION['user_role'];
+            if ($userRole === 'client') {
+                 // Redirigez le client vers la page d'accueil
+                 header("location:../index.php");
+             } elseif ($userRole === 'cooperative') {
+                 // Redirigez la coopérative vers produits.php
+                 header("location:produits.php");
+                 exit(); // Arrêtez l'exécution du script après la redirection
+             }
+
+
+
+
+
+
+
+
+
+
+
+
+   //statistique 
+        $nbrAdmins = $conn->query("SELECT COUNT(*) AS total FROM utilisateurs WHERE ROLE='admin'")->fetch_assoc()['total'];
+        $nbrClients = $conn->query("SELECT COUNT(*) AS total FROM utilisateurs WHERE ROLE='client'")->fetch_assoc()['total'];
+        $nbrCooperatives = $conn->query("SELECT COUNT(*) AS total FROM utilisateurs WHERE ROLE='cooperative'")->fetch_assoc()['total'];
+        $nbrCategories = $conn->query("SELECT COUNT(*) AS total FROM categories")->fetch_assoc()['total'];
+
+
+     include"../includes/navDashboard.php" ;
+
+     include"../includes/sidebar.php" ?>
 
    
 

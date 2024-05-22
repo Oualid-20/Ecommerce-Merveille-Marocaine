@@ -5,7 +5,7 @@
     $pageTitle = "Cart-Panier";
     include "includes/HeadTemplate.php";
 
-    include "dashboard/crud/affiche.php";$total_general = 0;   //unset($_SESSION['Panier']);?>
+    include "dashboard/crud/affiche.php";   //unset($_SESSION['Panier']);?>
     <body>
 
 
@@ -54,6 +54,8 @@
                         <form action="#">
                             <div class="table-content table-responsive">
                                 <table class="table">
+                                <?php  if (isset($_SESSION["message"]) ){ echo $_SESSION["message"]; unset($_SESSION["message"]); } ?>
+
                                     <thead>
                                         <tr>
                                             <th class="product-thumbnail">Images</th>
@@ -65,21 +67,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
+                                        <?php    $total_general = 0;
                                             if(isset($_SESSION['Panier'])) {
-                                            foreach ($_SESSION['Panier'] as $item):
+                                            foreach ($_SESSION['Panier'] as $index => $item):
                                                 $total_general += $item['total']; ?>
                                         <tr>
                                             <td class="product-thumbnail"><a href="#"><img src="<?=$item['image'];?>" alt="Photo du Produit"></a></td>
                                             <td class="product-name"><a href="#"><?=$item['produit'];?></a></td>
                                             <td class="product-price"><span class="amount"><?=$item['prix'];?> DH</span></td>
                                             <td class="product-quantity">
-                                                <div class="cart-plus-minus"><input type="text" value="<?=$item['quantite'];?>"/></div>
+                                                <div class="cart"><input type="text" value="<?=$item['quantite'];?>"/></div>
                                             </td>
                                             <td class="product-subtotal"><span class="amount"><?=$item['total'];?> DH</span></td>
-                                            <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                            <td class="product-remove"><a href="Functions/panier.php?supprimeCart=ok&idp=<?=$item['ID_produit'];?>&classementCart=<?=$index;?>" onclick="return confirm('Êtes-vous sûr de vouloir enlever ce produit ?');"><i class="fa fa-times"></i></a></td>
                                         </tr>
-                                            <?php endforeach ;
+                                            <?php endforeach ;  $_SESSION["total_general"]= $total_general;
                                         }?>
                                     </tbody>
                                 </table>
@@ -88,7 +90,6 @@
                                 <div class="col-12">
                                     <div class="coupon-all">
                                         <div class="coupon2">
-                                            <input class="btn theme-btn" name="update_cart" value="Update cart" type="submit">
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +101,7 @@
                                         <ul class="mb-20">
                                             <li>Total <span><?=$total_general;?> DH</span></li>
                                         </ul>
-                                        <a class="btn theme-btn" href="#">Proceed to checkout</a>
+                                        <a class="btn theme-btn" href="Functions/valider_panier.php" type="button">Valider Mon Panier</a>
                                     </div>
                                 </div>
                             </div>

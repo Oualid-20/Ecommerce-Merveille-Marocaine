@@ -3,8 +3,49 @@
     $pageTitle = "Admin";
     include "../Functions/dbConnexion.php";
     include "../includes/head.php" ;
-   // include_once"../Functions/verificationRole.php";
+
+
+    if (!isset($_SESSION['user_role'])) {
+        header("location:../php/connecter_clt.php");
+            
+    } 
+
+    $userRole = $_SESSION['user_role'];
+    if ($userRole === 'client') {
+         // Redirigez le client vers la page d'accueil
+         header("location:../index.php");
+     } elseif ($userRole === 'cooperative') {
+         // Redirigez la coopérative vers produits.php
+         header("location:produits.php");
+         exit(); // Arrêtez l'exécution du script après la redirection
+     }
+
+
+
+
+
+
     include "crud/affiche.php"; 
+
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+
+        $admins = afficherAdmin($page);
+        
+        $result1 = $conn->query("SELECT COUNT(id) AS id FROM UTILISATEURS WHERE ROLE = 'admin'");
+        if ($result1) {
+            $custCount = $result1->fetch_assoc(); 
+            $total = $custCount['id'];
+        } else {
+            // Gérer les erreurs de requête SQL
+            die("Erreur de requête SQL : " . $conn->error);
+        }
+        
+        $pages = ceil($total / 9); // Toujours diviser par 9 pour obtenir le nombre total de pages
+        $Previous = $page - 1;
+        $Next = $page + 1;
+     
+
 
      include "../includes/navDashboard.php" ;
      include "../includes/sidebar.php";
@@ -35,7 +76,6 @@
             </thead>
             <tbody>
                <?php
-                    $admins = afficherAdmin(); 
                     foreach ($admins as $admin) {
                         ?>
                         <tr> 
@@ -54,6 +94,27 @@
                  <?php } ?>
             </tbody>
         </table>
+
+        <!--  pagination -->
+            <div class="pagination" style="justify-content: center;">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item <?= $Previous <= 0 ? 'disabled' : '' ?>">
+                                <a class="page-link" href="admins.php?page=<?= $Previous <= 0 ? 1 : $Previous; ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Previous</span>
+                                </a>
+                            </li>
+                            <?php for($i = 1; $i <= $pages; $i++): ?>
+                                <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="admins.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                            <?php endfor; ?>
+                            <li class="page-item <?= $Next > $pages ? 'disabled' : '' ?>">
+                                <a class="page-link" href="admins.php?page=<?= $Next > $pages ? $pages : $Next; ?>" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>                 
                          <!--Modal d'insertion -->
 
                                     <div class="modal fade" id="myModal_admin">
@@ -195,7 +256,7 @@
             })
             .then((result) => {
                 if (result.isConfirmed) {
-                window.location.href = `crud/supprimer.php?type=admin&Id=${coopId}`;
+                window.location.href = `crud/supprimer.php?type=admins&Id=${coopId}`;
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swalWithBootstrapButtons.fire({
                     title: "Annulé",

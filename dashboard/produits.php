@@ -1,64 +1,125 @@
 <?php 
         session_start();
-        $pageTitle = "Produites";
+        $pageTitle = "Produits";
         include "../Functions/dbConnexion.php";
         include "../includes/head.php";
 
+        if (!isset($_SESSION['user_role'])) {
+            header("location:../php/connecter_clt.php");
+            exit();
+        }
+
+        $userRole = $_SESSION['user_role'];
+        $coopName = null;
+
+        if ($userRole === 'client') {
+            header("location:../index.php");
+            exit();
+        } elseif ($userRole === 'cooperative') {
+            $coopName = $_SESSION['user_coop'];
+        }
+
         include "crud/affiche.php"; 
-        //dashboard
+// dashboard
+
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+        $produits = afficherProduit($page, $coopName);
+
+        // Exécuter la requête pour compter le nombre total de produits
+        if ($coopName) {
+            $stmt = $conn->prepare("SELECT COUNT(ID_PDT) AS total FROM PRODUITS WHERE COOPERATIVE = ?");
+            $stmt->bind_param("s", $coopName);
+            $stmt->execute();
+            $result1 = $stmt->get_result();
+            $rowCount = $result1->fetch_assoc(); 
+            $stmt->close();
+        } else {
+            $result1 = $conn->query("SELECT COUNT(ID_PDT) AS total FROM PRODUITS");
+            $rowCount = $result1->fetch_assoc(); 
+        }
+
+        if ($rowCount) {
+            $total = $rowCount['total'];
+        } else {
+            die("Erreur de requête SQL : " . $conn->error);
+        }
+
+        $perPage = 9; // Nombre de produits par page
+        $pages = ceil($total / $perPage); // Calcul du nombre total de pages
+
+        $Previous = $page - 1;
+        $Next = $page + 1;
+
         include "../includes/navDashboard.php"; 
-        include "../includes/sidebar.php" ;
-    ?>
-    <div id="main-content" class="container allContent-section py-4">
-            <div> <?php if (isset($_SESSION["message_CRUD"]) ){ echo $_SESSION["message_CRUD"]; unset($_SESSION["message_CRUD"]); } ?>  </div>
-            <div class="container mt-3 d-flex justify-content-between">
-                <h2>Produits</h2>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                    Ajouter un Produit
-                </button>
-        </div>
-        <table class="table table-striped mt-4">
-            <thead class='table-success'>
+        include "../includes/sidebar.php";
+?>
+
+<div id="main-content" class="container allContent-section py-4">
+    <div><?php if (isset($_SESSION["message_CRUD"])) { echo $_SESSION["message_CRUD"]; unset($_SESSION["message_CRUD"]); } ?></div>
+    <div class="container mt-3 d-flex justify-content-between">
+        <h2>Produits</h2>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Ajouter un Produit</button>
+    </div>
+    <table class="table table-striped mt-4">
+        <thead class='table-success'>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Prix</th>
+                <th>Cooperative</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $base_path = '../uploads/produits/';
+            foreach ($produits as $pdt) { ?>
                 <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Catégorie</th>
-                    <th>Prix</th>
-                    <th>Cooperative</th>
-                    <th>Image</th>
-                    <th>Action</th>
+                    <td><?=$pdt['ID_PDT']; ?></td>
+                    <td><?=$pdt['NOM_PDT']; ?></td>
+                    <td><?=$pdt['DESCRIPTION_PDT'];?></td>
+                    <td><?=$pdt['NOM']; ?></td>
+                    <td><?=$pdt['PRIX_PDT'];?> $</td>
+                    <td><?=$pdt['COOPERATIVE']; ?></td>
+                    <td><img src="<?=$base_path . basename($pdt['IMAGE_PDT']);?>" alt="Produit Image" style="max-width: 60px; max-height: 60px;" /></td>
+                    <td>
+                        <div class='btn-group btn-group'>
+                            <a name="modifier_pdt" type='button' class='btn btn-warning mr-2' data-bs-toggle="modal" data-bs-target="#Modal_modifier<?=$pdt['ID_PDT']; ?>">Modifier</a>
+                            <a name="supprim_pdt" id="supprimer" data-id='<?=$pdt['ID_PDT']?>' type='button' class='btn btn-danger'>Supprimer</a>
+                        </div>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-               <?php
-                    $produits = afficherProduit();
-                    $base_path = '../uploads/produits/';  
-                    foreach ($produits as $pdt) {
-                        ?>
-                        <tr> 
-                            <td><?=$pdt['ID_PDT']; ?></td>
-                            <td><?=$pdt['NOM_PDT']; ?></td>
-                            <td><?=$pdt['DESCRIPTION_PDT'];?></td>
-                            <td><?=$pdt['NOM']; ?></td>
-                            <td><?=$pdt['PRIX_PDT'];?> MAD</td>
-                            <td><?=$pdt['COOPERATIVE']; ?></td>
-                            <td> <img src="<?=$base_path . basename($pdt['IMAGE_PDT']);?>" alt="Produit Image" style="max-width: 60px; max-height: 60px;" /></td>
-                            <td> 
-                                <div class='btn-group btn-group'>
-                                    <a name="modifier_pdt"  type='button' class='btn btn-warning mr-2' data-bs-toggle="modal" data-bs-target="#Modal_modifier<?=$pdt['ID_PDT']; ?>">Modifier</a>
-                                    <a name="supprim_pdt"  id="supprimer" data-id='<?=$pdt['ID_PDT']?>' type='button' class='btn btn-danger'>Supprimer</a>
-                                </div> 
-                            </td>
-                        </tr>
-                 <?php 
-                }                 
-                 ?>
-            </tbody>
-        </table>                    
-                           <!-- The Modal insere -->
-                           
-                        <div class="modal fade" id="myModal">
+            <?php } ?>
+        </tbody>
+    </table>
+
+    <!-- pagination -->
+    <div class="pagination" style="justify-content: center;">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item <?= $Previous <= 0 ? 'disabled' : '' ?>">
+                    <a class="page-link" href="produits.php?page=<?= $Previous <= 0 ? 1 : $Previous; ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                    </a>
+                </li>
+                <?php for($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="produits.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                <?php endfor; ?>
+                <li class="page-item <?= $Next > $pages ? 'disabled' : '' ?>">
+                    <a class="page-link" href="produits.php?page=<?= $Next > $pages ? $pages : $Next; ?>" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- The Modal insere -->
+                             <div class="modal fade" id="myModal">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                     <div class="modal-content">
                                         <!-- Modal Header -->
@@ -102,6 +163,14 @@
                                                 <div class="mb-3">
                                                     <label for="productImage" class="form-label">Image Produit</label>
                                                     <input type="file" name="IMAGE_PDT" class="form-control" id="productImage" accept="image/*" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="productImage2" class="form-label">Image 2 Produit</label>
+                                                    <input type="file" name="IMAGE2_PDT" class="form-control" id="productImage2" accept="image/*" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="productImage3" class="form-label">Image 3 Produit</label>
+                                                    <input type="file" name="IMAGE3_PDT" class="form-control" id="productImage3" accept="image/*" required>
                                                 </div>
 
                                                 <div class="mb-3">
@@ -175,6 +244,14 @@
                                                 <div class="mb-3">
                                                     <label for="productImage" class="form-label">Image Produit</label>
                                                     <input type="file" name="IMAGE_PDT" class="form-control" id="productImage" accept="image/*" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="productImage" class="form-label">Image 2 Produit</label>
+                                                    <input type="file" name="IMAGE2_PDT" class="form-control" id="productImage" accept="image/*" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="productImage" class="form-label">Image 3 Produit</label>
+                                                    <input type="file" name="IMAGE3_PDT" class="form-control" id="productImage" accept="image/*" required>
                                                 </div>
 
                                                 <div class="mb-3">

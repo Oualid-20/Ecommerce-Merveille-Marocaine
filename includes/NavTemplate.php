@@ -1,4 +1,4 @@
-            <?php $catégories = afficherCategorie();   $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($_SESSION['Panier']) : '0';   ?>
+<?php $catégories = afficherCategorie();   $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($_SESSION['Panier']) : '0';   ?>
         <header>
             <div id="header-sticky" class="header-area box-90">
                 <div class="container-fluid">
@@ -17,7 +17,7 @@
                                 <h4>Category</h4>
                                     <?php foreach ($catégories as $cat){ ?>
                                 <ul>
-                                    <li><a href="shop.php"><i class="flaticon-shopping-cart-1"></i><?=$cat['NOM'];?></a></li>
+                                    <li><a href="shop-filter.php"><i class="flaticon-shopping-cart-1"></i><?=$cat['NOM'];?></a></li>
                                 </ul>
                                      <?php }?>
                             </div>
@@ -28,23 +28,6 @@
                                     <ul>
                                         <li>
                                             <a href="index.php">Home</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="index.php">Home Style 1</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-2.php">Home Style 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-3.php">Home Style 3</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-4.php">Home Style 4</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-5.php">Home Style 5</a>
-                                                </li>
-                                            </ul>
                                         </li>
                                         <li>
                                             <a href="shop-filter.php">Products </a>
@@ -53,7 +36,7 @@
                                             <a href="blog.php">Blog</a>
                                             <ul class="submenu">
                                                 <li>
-                                                    <a href="blog-3-col-mas.php">Blog 3 Col Masonry</a>
+                                                    <a href="blog.php">Blog</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -71,7 +54,7 @@
                                                     <a href="php/connecter_clt.php">login</a>
                                                 </li>
                                                 <li>
-                                                    <a href="register.php">Register</a>
+                                                    <a href="php/s'inscrire.php">Register</a>
                                                 </li>
                                                 <li>
                                                     <a href="cart.php">Shoping Cart</a>
@@ -95,13 +78,15 @@
                                         <a class="search-btn nav-search search-trigger" href="#"><i
                                                 class="fas fa-search"></i></a>
                                     </li>
-                                    <li class="login-btn"><a href="php/connecter_clt.php"><i class="far fa-user"></i></a></li>
+                                    <?php if (!isset($_SESSION['user_email'])){ ?>
+                                    <li class="login-btn"><a href="php/connecter_clt.php"><i class="far fa-user"></i></a></li> <?php } else{ ?>
+                                        <li class="login-btn"><a href="Functions/deconnexion.php">LogOut</a></li> <?php }?>
                                     <li class="d-shop-cart"><a href="#"><i class="flaticon-shopping-cart"></i> <span
                                                 class="cart-count"><?=$nbr_art;?></span></a>
                                         <ul class="minicart">
-                                        <?php
+                                        <?php   $total_general = 0;
                                             if(isset($_SESSION['Panier'])) {
-                                            foreach ($_SESSION['Panier'] as $item):
+                                            foreach ($_SESSION['Panier'] as $index => $item):
                                                 $total_general += $item['total']; ?>
                                                  <li>
                                                 <div class="cart-img">
@@ -118,7 +103,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="del-icon">
-                                                    <a href="#">
+                                                    <a href="Functions/panier.php?supprimeCart=ok&classementCart=<?=$index;?>" onclick="return confirm('Êtes-vous sûr de vouloir enlever ce produit ?');">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 </div>

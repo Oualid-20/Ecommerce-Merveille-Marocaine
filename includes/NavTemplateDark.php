@@ -19,7 +19,7 @@ $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($
                         <h4>Category</h4>
                         <?php foreach ($catégories as $cat){ ?>
                         <ul>
-                            <li><a href="shop.php"><i class="flaticon-shopping-cart-1"></i><?=$cat['NOM'];?></a></li>
+                            <li><a href="shop-filter.php"><i class="flaticon-shopping-cart-1"></i><?=$cat['NOM'];?></a></li>
                         </ul>
                         <?php }?>
                     </div>

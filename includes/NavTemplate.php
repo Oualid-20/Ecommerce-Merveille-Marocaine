@@ -10,7 +10,7 @@
                                 <span class="bar3"></span>
                             </div>
                             <div class="logo">
-                                <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="index.html"><img src="assets/img/logo/Yalla.png" alt=""></a>
                             </div>
 
                             <div class="category-menu">

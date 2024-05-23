@@ -5,6 +5,7 @@
     include_once "../Functions/sessionConnect.php";
 
 ?>
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/iconlogo.png">
     <link rel="stylesheet" href="/merveille_marocaine/assets/css/connexion.css">
     <link rel="stylesheet" href="/merveille_marocaine/assets/css/s'inscrire.css">
 

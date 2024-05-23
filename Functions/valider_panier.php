@@ -36,7 +36,10 @@
         $stmtCommande->bind_param("isss", $_SESSION["user_id"], $adresseLivraison, $dateCommande, $trackingNumber);
         $stmtCommande->execute();
         require "../sendmail/send.php" ;
-        envoieMail($_SESSION["user_email"],$trackingNumber);
+        envoieMail($_SESSION["user_email"], $trackingNumber);
+
+        $_SESSION['commande_passee'] = false;
+
 
         unset($_SESSION['Panier']);
         header('location:../TrackingPage.php');

@@ -1,11 +1,12 @@
 <?php 
     session_start();
     $pageTitle = "S'inscrire";
-    include"../includes/head.php" ;
-    include_once"../Functions/sessionConnect.php";
+    include "../includes/head.php" ;
+    include_once "../Functions/sessionConnect.php";
 ?>
     <link rel="stylesheet" href="/merveille_marocaine/assets/css/s'inscrire.css">
     <link rel="stylesheet" href="/merveille_marocaine/assets/css/connexion.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/iconlogo.png">
 
 <body>
     <style>

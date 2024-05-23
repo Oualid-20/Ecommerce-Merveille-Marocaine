@@ -1,3 +1,5 @@
+<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/iconlogo.png">
+
 <body>
 <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background-color:hsla(220, 83%, 39%, 0.963);">
     

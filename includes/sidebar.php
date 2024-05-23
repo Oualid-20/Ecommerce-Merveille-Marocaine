@@ -1,6 +1,6 @@
 <div class="sidebar" id="mySidebar">
     <div class="side-header">
-        <img src="" width="120" height="120" alt="Logo Merveille Marocaine"> 
+        <img src="../assets/img/logo/Yalla.png" width="190" height="100" alt="Logo Merveille Marocaine"> 
         <h5 style="margin-top:10px;">Hello, Admin</h5>
     </div>
     

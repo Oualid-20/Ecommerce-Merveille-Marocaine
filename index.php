@@ -9,7 +9,7 @@
 <body>
         <!-- header start -->
 
-        <?php include "includes/NavTemplate.php";?>  
+        <?php include "includes/NavTemplateDark.php";?>  
     
         <!-- header end -->
         <main>

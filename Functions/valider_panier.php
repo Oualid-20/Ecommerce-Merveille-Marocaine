@@ -31,15 +31,16 @@
 
 
         $dateCommande = date("Y-m-d H:i:s"); // Récupérer la date actuelle
-
-        $stmtCommande = $conn->prepare("INSERT INTO commandes (ID, ADRESSE, DATE_COMMANDE, TRACKING) VALUES (?, ?, ?, ?)");
-        $stmtCommande->bind_param("isss", $_SESSION["user_id"], $adresseLivraison, $dateCommande, $trackingNumber);
+        $methode= "COD";
+        $stmtCommande = $conn->prepare("INSERT INTO commandes (ID, ADRESSE, DATE_COMMANDE, TRACKING, METHODE) VALUES (?, ?, ?, ?, ?)");
+        $stmtCommande->bind_param("issss", $_SESSION["user_id"], $adresseLivraison, $dateCommande, $trackingNumber, $methode);
         $stmtCommande->execute();
+
+
         require "../sendmail/send.php" ;
         envoieMail($_SESSION["user_email"], $trackingNumber);
 
         $_SESSION['commande_passee'] = false;
-
 
         unset($_SESSION['Panier']);
         header('location:../TrackingPage.php');

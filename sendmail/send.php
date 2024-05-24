@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'PHPMailer/PHPMailerAutoload.php';
 function envoieMail( string $email, string $trackingNumber) {
     $mail = new PHPMailer;
@@ -23,7 +24,7 @@ function envoieMail( string $email, string $trackingNumber) {
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Your Track Number';
-    $mail->Body    = 'Merci pour votre commande. Votre numéro de suivi est : <b>' . $trackingNumber . '</b>';
+    $mail->Body    = 'Merci pour votre commande.</br> Votre numéro de suivi est : <b>' . $trackingNumber . '</b> </br> Votre commande va être livrer dans les 7 prochaine jours';
     $mail->AltBody = 'Merci pour votre commande. Votre numéro de suivi est ' . $trackingNumber;
     
     if(!$mail->send()) {

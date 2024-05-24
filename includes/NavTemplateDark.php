@@ -58,7 +58,9 @@ $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($
                             <li class="search-btn">
                                 <a class="search-btn nav-search search-trigger" href="#"><i class="fas fa-search"></i></a>
                             </li>
-                            <li class="login-btn"><a href="php/connecter_clt.php"><i class="far fa-user"></i></a></li>
+                            <?php if (!isset($_SESSION['user_email'])){ ?>
+                                <li class="login-btn"><a href="php/connecter_clt.php"><i class="far fa-user"></i></a></li> <?php } else{ ?>
+                                <li class="login-btn"><a href="Functions/deconnexion.php">LogOut</a></li> <?php }?>
                             <li class="d-shop-cart"><a href="#"><i class="flaticon-shopping-cart"></i> <span class="cart-count"><?=$nbr_art;?></span></a>
                                 <ul class="minicart">
                                     <?php   
@@ -75,7 +77,7 @@ $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($
                                                 <div class="cart-content">
                                                     <h3><a href="product-details.php"><?=$item['produit'];?></a></h3>
                                                     <div class="cart-price">
-                                                        <span class="new"><?=$item['prix'];?> DH</span>
+                                                        <span class="new"><?=$item['prix'];?> $</span>
                                                     </div>
                                                 </div>
                                                 <div class="del-icon">
@@ -89,7 +91,7 @@ $nbr_art = isset($_SESSION['Panier']) && is_array($_SESSION['Panier']) ? count($
                                     <li>
                                         <div class="total-price">
                                             <span class="f-left">Total:</span>
-                                            <span class="f-right"><?=$total_general;?> DH</span>
+                                            <span class="f-right"><?=$total_general;?> $</span>
                                         </div>
                                     </li>
                                     <li>
